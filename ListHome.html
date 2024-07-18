@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Colored Ordered List</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+    <style>
+
+        .color-red {
+            color: red;
+        }
+        .color-orange {
+            color: orange;
+        }
+        .color-green {
+            color: green;
+        }
+        .color-deepskyblue {
+            color: deepskyblue;
+        }
+        .color-violet {
+            color: violet;
+        }
+
+        .Verstka {
+            list-style: circle url(sphere.png) inside;
+        }
+
+        .VerstkaSposob {
+            list-style: circle url(success.png) inside;
+        }
+
+        .CMS {
+            list-style: circle url(sphere.png) inside;
+        }
+
+        .CMSOsnova {
+            list-style: circle url(success.png) inside;
+        }
+        .CMSExtended {
+            list-style: circle url(cross.png) inside;
+        }
+
+        li {
+            font-family: Roboto
+        }
+
+        ol ol li {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <ol type="I">
+        <li class="color-red">
+            Photoshop
+            <ol type="a">
+                <li>Интерфейс</li>
+                <li>Эффекты</li>
+                <li>Инструменты</li>
+                <li>Практика</li>
+            </ol>
+        </li>
+        <li class="color-orange">Illustrator
+            <ol type="a">
+                <li>Интерфейс</li>
+                <li>Инструменты</li>
+                <li>Практика</li>
+            </ol>
+        </li>
+        <li class="color-green">Верстка
+            <ol type="a">
+                <li>XHTML
+                    <ul class="Verstka">
+                        <li>Основы</li>
+                        <li>Способы верстки:
+                            <ul class="VerstkaSposob">
+                                <li>Таблицы</li>
+                                <li>Фреймы</li>
+                                <li>Верстка тегами div</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>CSS
+                    <ul class="Verstka">
+                        <li>Основы</li>
+                        <li>Перечень свойств</li>
+                    </ul>
+                </li>       
+            </ol>
+        </li>
+        <li class="color-deepskyblue">Flash
+            <ol type="a">
+                <li>Анимация</li>
+                <li>Action Script</li>
+            </ol>
+        </li>
+        <li class="color-violet">CMS
+            <ol type="a">
+                <li>WordPress
+                    <ul class="CMS">
+                        <li>Установка</li>
+                        <li>Основы работы:
+                            <ul class="CMSOsnova">
+                                <li>Интерфейс</li>
+                                <li>Шаблоны</li>
+                                <li>Контент</li>
+                                <li>Плагины</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Joomba
+                    <ul class="CMS">
+                        <li>Установка</li>
+                        <li>Основы работы:
+                            <ul class="CMSOsnova">
+                                <li>Интерфейс</li>
+                                <li>Шаблоны</li>
+                                <li>Контент</li>
+                                <li>Расширения:
+                                    <ul class="CMSExtended">
+                                        <li>Компоненты</li>
+                                        <li>Модули</li>
+                                        <li>Плагины</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+    </ol>
+</body>
+</html>
+
