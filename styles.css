@@ -1,0 +1,51 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: grey;
+    margin: 0;
+    padding: 20px;
+}
+
+.periodic-table {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 1px solid grey;
+    margin: 2px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+    .element .number {
+        font-size: 14px;
+        font-weight: bold;
+        color: #333333;
+    }
+
+    .element .symbol {
+        font-size: 24px;
+        font-weight: bold;
+        color: #555555;
+    }
+
+    .element .name {
+        font-size: 12px;
+        color: #777777;
+    }
+
+.spacer {
+    width: 65.2px;
+    height: 65.2px;
+    background-color: transparent;
+}
