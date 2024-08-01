@@ -3,13 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.34930.48
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{615FCB84-1427-42A5-8ACA-6C505335AE96}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6CCCDC9-7F6B-4F2F-B254-68B9A1DAAD03}"
 	ProjectSection(SolutionItems) = preProject
-		HTMLPage1-RAM.html = HTMLPage1-RAM.html
-		HTMLPage2-CPU.html = HTMLPage2-CPU.html
-		index.html = index.html
-		..\ReadMe.txt = ..\ReadMe.txt
-		style.css = style.css
+		Form.css = Form.css
+		Form.html = Form.html
 	EndProjectSection
 EndProject
 Global
@@ -17,6 +14,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B58E9048-E90D-464A-9104-568044D57DBA}
+		SolutionGuid = {A177D4D7-3112-4126-971D-66E346C067EC}
 	EndGlobalSection
 EndGlobal
