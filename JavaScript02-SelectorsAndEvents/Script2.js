@@ -375,3 +375,24 @@ function tickCountdown()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+function createTimeBlock(unit) {
+	let time_block = document.createElement("div");
+	time_block.className = "time_block";
+
+	let years_unit = document.createElement("div");
+	years_unit.id = 'years_unit';
+	years_unit.className = "time_unit";
+	years_unit.innerHTML = years;
+
+	let years_marker = document.createElement("div");
+	years_marker.id = "years_marker";
+	years_marker.className = "time_marker";
+	years_marker.innerHTML = "Years";
+
+	time_block.prepend(years_unit);
+	time_block.append(years_marker);
+
+	let display = document.getElementById("display");
+	display.prepend(time_block);
+}
