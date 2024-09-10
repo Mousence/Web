@@ -1,0 +1,92 @@
+﻿body
+{
+	/*background-color:#D8D8D8;*/
+	transition:background-color 2s, color 2s;
+}
+
+#header
+{
+	display: flex;
+}
+
+#background_switch
+{
+	width: 24px;
+	height: 24px;
+	background-size:24px 24px;
+	transition: background-image 2s;
+}
+
+.light
+{
+	background: #D8D8D8;
+	color: #323232;
+}
+
+	.light #background_switch
+	{
+		background-image: url("img/moon.png");
+	}
+
+.dark
+{
+	background: #323232;
+	color: #D8D8D8;
+}
+
+	.dark #background_switch
+	{
+		background-image: url("img/sun.png");
+	}
+
+.timers
+{
+	border-top:solid 2px;
+	border-bottom:solid 2px;
+	margin:5px 0px 5px;
+}
+input
+{
+	font-size:32px;
+}
+#result
+{
+	font-size:32px;
+}
+#display
+{
+	border:solid, 1px;
+	margin:10px;
+	padding:10px;
+	/*width:256px;*/
+	font-size:32px;
+	display:flex;
+	justify-content:space-around;
+}
+.time_block
+{
+	border:solid, 3px;
+	border-radius:10px;
+	display:block;
+}
+.time_unit
+{
+	width: 148px;
+	height: 148px;
+	background-color: Highlight;
+	/*border-top-left-radius:5px;
+	border-top-right-radius:5px;*/
+	/*text-align:center;*/
+	display: flex;
+	justify-content: center;/*выравнивание по горизонтали*/
+	align-items: center;	/*выравнивание по вертикали*/
+}
+.time_marker
+{
+	border:solid, 1px;
+	background-color:darkred;
+	color:aliceblue;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
