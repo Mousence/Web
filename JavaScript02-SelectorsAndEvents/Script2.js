@@ -167,6 +167,8 @@ document.getElementById("btnStart").onclick =
 		//element.append(p_time);
 	}
 
+	////////////////////////////////////////////////////////////////////
+
 function tickCountdown()
 {
 	if (!document.getElementById("targetTime").disabled) return;
@@ -218,43 +220,24 @@ function tickCountdown()
 	console.log(SECONDS_IN_YEAR);
 
 	let timestamp_in_seconds = Math.floor(timestamp / 1000);
+	let time_of_day = timestamp_in_seconds % SECONDS_IN_DAY;
+	timestamp_in_seconds = Math.floor(timestamp_in_seconds / SECONDS_IN_DAY);
+	timestamp_in_seconds = timestamp_in_seconds * SECONDS_IN_DAY;
 
 	let years = Math.floor(timestamp_in_seconds / SECONDS_IN_YEAR);
 	if (years > 0)
 	{
 		timestamp_in_seconds = (timestamp_in_seconds % (years * SECONDS_IN_YEAR));
-		if (document.getElementById("years_unit") == null)
-		{
-			let time_block = document.createElement("div");
-			time_block.className = "time_block";
-
-			let years_unit = document.createElement("div");
-			years_unit.id = "years_unit";
-			years_unit.className = "time_unit";
-			years_unit.innerHTML = years;
-
-			let years_marker = document.createElement("div");
-			years_marker.id = "years_marker";
-			years_marker.className = "time_marker";
-			years_marker.innerHTML = "Years";
-
-			time_block.prepend(years_unit);
-			time_block.append(years_marker);
-
+		let years_unit = document.getElementById("years_unit");
+		if (years_unit == null) {
 			let display = document.getElementById("display");
-			display.prepend(time_block);
+			display.prepend(createTimeBlock("years", years));
 		}
+		else years_unit.innerHTML = years;
 	}
 	else
 	{
-		let years_unit = document.getElementById("years_unit");
-		if (years_unit != null)
-		{
-			let years_time_block = years_unit.parentElement;
-			//document.removeChild(years_time_block);
-			let years_parent = years_time_block.parentElement;
-			years_parent.firstChild.remove();
-		}
+		removeTimeBlock("years");
 	}
 
 	let month = Math.floor(timestamp_in_seconds / SECONDS_IN_MONTH);
@@ -265,20 +248,7 @@ function tickCountdown()
 		let month_unit = document.getElementById("month_unit");
 		if (month_unit == null)
 		{
-			month_unit = document.createElement("div");
-			month_unit.id = "month_unit";
-			month_unit.className = "time_unit";
-
-			let month_marker = document.createElement("div");
-			month_marker.id = "month_marker";
-			month_marker.className = "time_marker";
-			month_marker.innerHTML = "Month";
-
-			let month_block = document.createElement("div");
-			month_block.className = "time_block";
-
-			month_block.prepend(month_unit);
-			month_block.append(month_marker);
+			month_block = createTimeBlock("month", month);
 
 			let years_unit = document.getElementById("years_unit");
 			if (years_unit != null)
@@ -292,17 +262,11 @@ function tickCountdown()
 				display.prepend(month_block);
 			}
 		}
-		document.getElementById("month_unit").innerHTML = month;
+		document.getElementById("month_unit").innerHTML = checkNumber(month);
 	}
 	else
 	{
-		let month_unit = document.getElementById("month_unit");
-		if (month_unit != null)
-		{
-			let month_block = month_unit.parentElement;
-			let display = month_block.parentElement;
-			display.removeChild(month_block);
-		}
+		removeTimeBlock("month");
 	}
 
 	let weeks = Math.floor(timestamp_in_seconds / SECONDS_IN_WEEK);
@@ -310,23 +274,10 @@ function tickCountdown()
 	{
 		timestamp_in_seconds = (timestamp_in_seconds % (weeks * SECONDS_IN_WEEK));
 		let display = document.getElementById("display");
-		let week_unit = document.getElementById("week_unit");
+		let week_unit = document.getElementById("weeks_unit");
 		if (week_unit == null)
 		{
-			week_unit = document.createElement("div");
-			week_unit.id = "week_unit";
-			week_unit.className = "time_unit";
-
-			let week_marker = document.createElement("div");
-			week_marker.id = "week_marker";
-			week_marker.className = "time_marker";
-			week_marker.innerHTML = "Weeks";
-
-			let week_block = document.createElement("div");
-			week_block.className = "time_block";
-
-			week_block.prepend(week_unit);
-			week_block.append(week_marker);
+			let week_block = createTimeBlock("weeks", weeks);
 
 			let month_unit = document.getElementById("month_unit");
 			let year_unit = document.getElementById("years_unit");
@@ -338,29 +289,37 @@ function tickCountdown()
 			else
 				display.prepend(week_block);
 		}
-		week_unit.innerHTML = weeks;
+		else week_unit.innerHTML = checkNumber(weeks);
 	}
 	else
 	{
-		let week_unit = document.getElementById("week_unit");
-		if (week_unit != null)
-		{
-			display.removeChild(week_unit.parentElement);
-		}
+		removeTimeBlock("weeks");
 	}
 
 	let days = Math.floor(timestamp_in_seconds / SECONDS_IN_DAY);
 	let days_in_seconds = days * SECONDS_IN_DAY;
-	if (days > 0) timestamp_in_seconds = (timestamp_in_seconds % (days * SECONDS_IN_DAY));
+	if (days > 0) {
+		timestamp_in_seconds = (timestamp_in_seconds % (days * SECONDS_IN_DAY));
+		let days_unit = document.getElementById("days_unit");
+		if (days_unit == null) {
+			let days_block = createTimeBlock("days", days);
+			let hours_unit = document.getElementById("hours_unit");
+			let hours_block = hours_unit.parentElement;
+			hours_block.before(days_block);
+		}
+		else days_unit.innerHTML = checkNumber(days);
+	}
+	else
+		removeTimeBlock("days");
 	//console.log(timestamp_in_seconds % days_in_seconds);
 
-	let hours = Math.floor(timestamp_in_seconds / 3600);
-	if (hours > 0) timestamp_in_seconds = (timestamp_in_seconds % (hours * SECONDS_IN_HOUR));
+	let hours = Math.floor(time_of_day / 3600);
+	if (hours > 0) time_of_day = (time_of_day % (hours * SECONDS_IN_HOUR));
 
-	let minutes = Math.floor(timestamp_in_seconds / SECONDS_IN_MINUTE);
-	if (minutes > 0) timestamp_in_seconds = (timestamp_in_seconds % (minutes * 60));
+	let minutes = Math.floor(time_of_day / SECONDS_IN_MINUTE);
+	if (minutes > 0) time_of_day = (time_of_day % (minutes * 60));
 
-	let seconds = Math.floor(timestamp_in_seconds);
+	let seconds = Math.floor(time_of_day);
 
 	//https://planetcalc.com/7741/
 	document.getElementById("result").innerHTML = `${years} Years, ${month} Month, ${weeks} Weeks, ${days} Days, ${checkNumber(hours)} Hours, ${checkNumber(minutes)} Minutes, ${checkNumber(seconds)} Seconds;`;
@@ -376,23 +335,37 @@ function tickCountdown()
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-function createTimeBlock(unit) {
+function createTimeBlock(name, value)
+{
 	let time_block = document.createElement("div");
 	time_block.className = "time_block";
 
-	let years_unit = document.createElement("div");
-	years_unit.id = 'years_unit';
-	years_unit.className = "time_unit";
-	years_unit.innerHTML = years;
+	let unit = document.createElement("div");
+	unit.id = `${name}_unit`;
+	unit.className = "time_unit";
+	unit.innerHTML = checkNumber(value);
 
-	let years_marker = document.createElement("div");
-	years_marker.id = "years_marker";
-	years_marker.className = "time_marker";
-	years_marker.innerHTML = "Years";
+	let marker = document.createElement("div");
+	marker.id = `${name}_marker`;
+	marker.className = "time_marker";
+	marker.innerHTML = name.charAt(0).toUpperCase() + name.slice(1);
+	//https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 
-	time_block.prepend(years_unit);
-	time_block.append(years_marker);
+	time_block.prepend(unit);
+	time_block.append(marker);
 
-	let display = document.getElementById("display");
-	display.prepend(time_block);
+	//let display = document.getElementById("display");
+	//display.prepend(time_block);
+
+	return time_block;
+}
+function removeTimeBlock(name)
+{
+	let unit = document.getElementById(`${name}_unit`);
+	if (unit != null) {
+		let block = unit.parentElement;
+		//document.removeChild(years_time_block);
+		let block_parent = block.parentElement;
+		block_parent.removeChild(block);
+	}
 }
